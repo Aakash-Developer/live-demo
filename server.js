@@ -54,6 +54,16 @@ const storage = multer.diskStorage({
 // Multer Upload Middleware
 const upload = multer({ storage: storage });
 
+app.get("/", (req, res) => {
+  res.send(`created by Aakash employeeId: String,
+  images: [
+    {
+      title: String,
+      path: String,
+    },
+  ],`);
+});
+
 // Handle multiple image uploads under a single employeeId
 app.post("/upload", upload.array("images", 10), async (req, res) => {
   let { titles, employeeId } = req.body;
